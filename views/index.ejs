@@ -5,8 +5,9 @@
 <title><%= title %></title>
 </head>
 <body>
-<form method='post' action='/login'>
+<form method='post' action='/'>
 <h3>Please Log In</h3>
+<input type='hidden' name='action' value='login' />
 UserName <input type='text' name='username' />
 <br />
 Password <input type='password' name='password' />

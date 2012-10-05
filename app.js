@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -18,9 +17,9 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
-  //console.log(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
+  app.use(express.cookieParser());
   //console.log(express.methodOverride());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -31,12 +30,11 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
-app.post('/login', mypage.login);
-app.get('/login', routes.index);
+app.get('/', mypage.index);
+app.post('/', mypage.handlePost);
 app.get('/users', user.list);
-app.get('/mypage', mypage.index);
 app.get('/comment', mypage.comment);
+app.get('/logout', mypage.logout);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

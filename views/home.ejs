@@ -17,8 +17,19 @@
 </div>
 <br />
 <div id='displayComments'>
-
+<%
+for(var i=0; i<comments.length; i++) {
+%>
+<h3><%=comments[i].title%><br />
+<%=comments[i].body%><br />
+</h3>
+<%
+}
+%>
 </div>
+</form>
+<form method='get' action='/logout'>
+<input type='submit' name='logout'  value='logout' />
 </form>
 </body>
 </html>
