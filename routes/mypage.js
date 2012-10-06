@@ -35,45 +35,67 @@ var index = function(request, response){
   var userFromCookie = cookie.user;
   if(userFromCookie != null) {
     console.log('User present : ' + userFromCookie);
-    response.render('home', {title: 'MyApp - Home', welcomemsg: 'Welcome ' + userFromCookie, 'comments':{}});
+    utils.logger.info('User present : ' + userFromCookie);
+    response.render('home', {title: utils.APP_TITLE + ' - Home', welcomemsg: 'Welcome ' + userFromCookie, 'comments':{}});
   } else {
     console.log('User not present in cookie');
-    response.render('index', {'title':'My Application'});
+    utils.logger.info('User not present in cookie');
+    response.render('index', {title:utils.APP_TITLE, errormsg:''});
   }
   response.end();
 };
 
 var logout = function(request, response) {
+  var methodType = request.originalMethod;
+  if(methodType == 'GET') {
+    console.log('Logged out by using GET method');  
+  }
   response.clearCookie('user');
-  response.render('index', {'title':'My Application'});
+  response.render('index', {title:utils.APP_TITLE, errormsg:''});
   response.end();
 }
 
 var handlePost = function(request, response) {
-  console.log('handling post requests');
+  console.log('Handling post requests');
+  /* Redirect the user based on authentication status */
   var redirectUser = function(status, userName) {
     if(status) {
-      console.log('authenticated. Setting cookie');
+      utils.logger.info('User authenticated : ' + userName + '. Setting cookie');
+      console.log('User authenticated : ' + userName + '. Setting cookie');
       response.cookie('user', userName, {maxAge: 86400, httpOnly: true});
-      var comments = services.getComments();
-      response.render('home', {title: 'MyApp - Home', welcomemsg: 'Welcome ' + userName, 'comments':comments});
+      //var comments = services.getURLs(userName);
+      response.send({title: utils.APP_TITLE, welcomemsg: 'Welcome ' + userName, error: false});
+      //response.render('home', {title: utils.APP_TITLE, welcomemsg: 'Welcome ' + userName, 'comments':{}});
     } else {
-      console.log('fucked up!');
+      utils.logger.info('Authentication failed for user : ' +  userName);
+      console.log('Authentication failed for user : ' +  userName);
+      response.send(401, {error: true});
+      //response.render('index', {title:utils.APP_TITLE, errormsg:'Invalid Username/Password'});
     }
     response.end();
   }
-  //console.log(request.cookies.user);
+
   var action  = request.body.action;
+  console.log(action);
   if(action != null) {
     if(! utils.isEmpty(action)) {
       if(action == 'login') {
         var userName = request.body.username;
 	var password = request.body.password;
+	console.log(userName + password);
         var status = services.authenticate(userName, password, redirectUser);
+      } else {
+	console.log('Action not defined properly.');
       }
     }
   }
 
+}
+
+var getURLs = function(request, response) {
+  var userName = request.query.username;
+  services.getURLs(userName, function() {});
+  response.end();
 }
 
 var comment = function(request, response) {
@@ -86,8 +108,15 @@ var comment = function(request, response) {
     response.end();
 }
 
+var testpage = function(request, response) {
+  response.render('test', {title:'super'});
+  response.end();
+}
+
 //exports.login = login;
 exports.index = index;
+exports.testpage = testpage;
 exports.comment = comment;
 exports.handlePost = handlePost;
+exports.getURLs = getURLs;
 exports.logout = logout;

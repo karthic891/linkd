@@ -1,0 +1,115 @@
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-05T09:09:37.593Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-05T09:09:46.067Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-05T09:40:46.371Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-05T09:42:03.420Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-05T09:43:04.780Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-05T09:44:59.525Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-05T09:56:53.502Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-05T09:59:35.153Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-05T10:00:10.347Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-05T10:00:21.612Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-05T12:15:14.632Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-05T12:15:59.430Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-05T18:27:49.558Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:10:45.605Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:20:00.151Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:21:37.483Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:22:01.875Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:22:54.362Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:27:21.630Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:32:38.745Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:41:18.266Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:42:21.858Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:46:11.807Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:46:55.677Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:47:16.345Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:48:28.477Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:52:46.053Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T13:53:46.330Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:40:58.941Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:43:16.237Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:43:59.293Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:44:51.174Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:45:14.949Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:49:05.430Z"}
+{"level":"info","message":"Authentication failed for user undefined","timestamp":"2012-10-06T18:49:14.194Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:50:34.270Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T18:50:41.422Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:52:30.443Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T18:52:35.755Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T18:52:41.836Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T18:52:57.019Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T18:55:21.674Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:55:31.250Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T18:55:38.517Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T18:59:41.022Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T18:59:47.675Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:01:28.122Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T19:01:33.761Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:03:29.667Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:03:36.481Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T19:04:59.672Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:05:14.998Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:05:19.968Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:05:41.654Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:05:45.158Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:05:53.571Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T19:07:27.534Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:07:34.207Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:08:08.948Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T19:09:06.018Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:09:15.037Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:11:04.651Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:12:20.515Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:13:34.068Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:14:30.191Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:15:54.973Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:16:18.386Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:19:07.216Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T19:20:12.265Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T19:20:43.141Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:23:10.160Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T19:23:21.302Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:23:57.296Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:24:03.528Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T19:24:16.136Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:24:25.319Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:24:28.149Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:24:32.577Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T19:29:16.962Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:29:22.914Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T19:29:30.216Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:30:01.494Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T19:30:04.906Z"}
+{"level":"info","message":"Authentication failed for user test","timestamp":"2012-10-06T19:30:33.310Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:31:10.052Z"}
+{"level":"info","message":"Authentication failed for user adsfasdf","timestamp":"2012-10-06T19:31:13.984Z"}
+{"level":"info","message":"Authentication failed for user adsfasdf","timestamp":"2012-10-06T19:32:14.658Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:32:32.893Z"}
+{"level":"info","message":"Authentication failed for user adsfa","timestamp":"2012-10-06T19:32:35.731Z"}
+{"level":"info","message":"Authentication failed for user adsfa","timestamp":"2012-10-06T19:32:44.342Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:33:05.925Z"}
+{"level":"info","message":"Authentication failed for user asdf","timestamp":"2012-10-06T19:33:09.117Z"}
+{"level":"info","message":"Authentication failed for user asdf","timestamp":"2012-10-06T19:36:30.975Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:36:34.576Z"}
+{"level":"info","message":"Authentication failed for user asdf","timestamp":"2012-10-06T19:36:39.999Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:36:51.211Z"}
+{"level":"info","message":"Authentication failed for user adsfd","timestamp":"2012-10-06T19:36:54.412Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:37:53.023Z"}
+{"level":"info","message":"Authentication failed for user adsf","timestamp":"2012-10-06T19:37:56.782Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:40:57.530Z"}
+{"level":"info","message":"Authentication failed for user dasf","timestamp":"2012-10-06T19:41:01.362Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:41:26.627Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T19:42:35.463Z"}
+{"level":"info","message":"Authentication failed for user asdf","timestamp":"2012-10-06T19:42:43.698Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:43:52.749Z"}
+{"level":"info","message":"User testauthenticated. Setting cookie","timestamp":"2012-10-06T19:43:56.598Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T19:44:57.638Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-06T19:45:09.036Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T19:45:46.982Z"}
+{"level":"info","message":"Authentication failed for user : ","timestamp":"2012-10-06T19:45:51.022Z"}
+{"level":"info","message":"Authentication failed for user : test","timestamp":"2012-10-06T19:45:58.178Z"}
+{"level":"info","message":"User not present in cookie","timestamp":"2012-10-06T19:46:43.922Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-06T19:47:00.699Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-06T20:03:04.804Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-06T20:03:10.550Z"}

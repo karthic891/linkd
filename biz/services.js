@@ -5,12 +5,12 @@ var MongoServer = mongodb.Server;
 var BSON = mongodb.BSON;
 var objectID = mongodb.objectID;
 
-console.log(Db);
-console.log(connection);
-console.log(MongoServer);
-console.log(BSON);
-console.log(objectID);
-console.log('Everything is set!');
+//console.log(Db);
+//console.log(connection);
+//console.log(MongoServer);
+//console.log(BSON);
+//console.log(objectID);
+//console.log('Everything is set!');
 db1 = new Db('node-monogo-blog', new MongoServer('localhost', 27017, {}, {}));
 db1.open(function(){console.log('function for db open called');});
 db1.close();
@@ -19,24 +19,28 @@ var authenticate = function(userName, password, redirectUser) {
   var server = new MongoServer('localhost', 27017, {auto_reconnect:true});
   var db = new Db('mydb', server);
   db.open(function(err, db) {
-    if(! err) {
+    if(! err) {  // DB open successful
       console.log('db open successful');
       db.collection('userinfo', {safe:true}, function(err, collection) {
 	if(! err) {
-	  var cursor = collection.findOne({username:userName, password:password}, function(err, data){
-	    console.log(data);
-	    //db.close();
-	    console.log('testing here!');
-	    redirectUser(true, userName);
+	  var cursor = collection.findOne({username:userName, password:password}, function(err, data) {
+	    console.log('data :: ' + data);
+	    if(data != null) {
+	      console.log('data is not null');
+	      redirectUser(true, userName);	      
+	    } else {
+	      console.log('data is null');
+	      redirectUser(false, userName);
+	    }
 	  });
 	} else {
 	  console.log('error in collection');
-	  redirectUser(false);
+	  redirectUser(false, userName);
 	}
       });
-    } else {
+    } else {  //If DB open error
       console.log('error in db opening');
-      redirectUser(false);
+      redirectUser(false, userName);
     }
   });
 }
@@ -56,6 +60,34 @@ var getComments = function() {
     return comments;
 }
 
+var getURLs = function(userName, callback) {
+  var server = new MongoServer('localhost', 27017, {auto_reconnect:true});
+  var db = new Db('mydb', server);
+  db.open(function(err, db) {
+    if(! err) {  //DB open successful
+      db.collection('urls', {safe: true}, function(err, collection) {
+	if(! err) {
+	  var cursor = collection.find({owner: userName}).toArray(function(err, data) {
+	    if(! err) {
+	      if(data != null) {
+		console.log(data);
+		//callback();
+	      } else {
+		console.log('data is null');
+	      }
+	    } else {
+	      console.log(err);
+	    }
+	  });
+	}
+      });
+    } else { //DB open failure
+    }
+  });
+  return 1;
+}
+
 exports.authenticate = authenticate;
 exports.addComment = addComment;
 exports.getComments = getComments;
+exports.getURLs = getURLs;

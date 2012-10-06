@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=windows-1252"%>
+<%@ page errorPage="ErrorPage.jsp" %>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+        <title>Welcome to Bug Tracker!</title>
+        <script type="text/javascript" src="yui2/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="yui2/connection/connection.js"></script>
+        <script type="text/javascript" src="yui2/element/element.js"></script>
+        <script type="text/javascript" src="yui2/button/button.js"></script>
+	<link rel="stylesheet" type="text/css" href="yui2/assets/skins/sam/button.css">
+        <link type="text/css" rel="stylesheet" href="resources/css/BTStyle.css"/>
+        <script type="text/javascript">
+            
+            function fullscreen()  
+            {  
+                if (window.top != window.self) {  
+                window.top.location="Login.jsp"  
+                }  
+            }  
+            
+            function validate() {
+                var output = true;
+                var user = document.login.UserName.value;
+                var pass = document.login.Pswd.value;
+                
+                if((user.length == 0)||(pass.length == 0))
+                {
+                    //document.getElementById("Error").style.visibility="visible"
+                    alert("Empty UserName or Password.");
+                    output = false;
+                }
+                return output;
+            }
+        </script>
+        
+    </head>
+    <body onload="fullscreen()" class="yui-skin-sam">
+<!--    
+    <%
+        String user = null;
+        String password = null;
+        String flag = null;
+        flag = (String)request.getAttribute("AuthFlag");
+        
+    %>
+-->
+        <h1 class="welcome_name" align="center">BUG TRACKER!</h1>
+        <hr></hr>
+<!--        <% if(("false".equals(flag))){ %>        
+            <p align="center">
+            <font color="Red">incorrect Username or Password!</font>
+            </p>
+        <% } %> -->
+            <div id="authFailed" style="color: red; text-align: center;"></div>
+            <table class="header" align="center">
+                <tr>
+                    <td>
+                        <b>User Name:</b>
+                    </td>
+                    <td>
+                        <input id="UserName" type="text" name="UserName" size="20" maxlength="10"></input>
+                    </td>
+                </tr>
+                 
+                <tr>
+                    <td>
+                        <b>Password:</b>
+                    </td>
+                    <td>
+                        <input id="Pswd" type="password" name="Pswd" size="20" maxlength="20"></input>
+                </td>
+                </tr>
+                 
+                <tr>
+                    <td colspan="2" align="center">
+                        <button id="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        
+        <hr></hr>
+        <script type="text/javascript">
+            YAHOO.namespace("yui.bugtracker");
+            var userName, password;
+            var ctx = "<%=request.getContextPath()%>";
+            var submitBtn = new YAHOO.widget.Button("submit");
+            YAHOO.yui.bugtracker.initConnection = function() {
+                var successHandler = function(o) {
+                    var authStatus = o.responseText;
+                    if(authStatus === 'success') {
+                        window.location = 'http://localhost:7101' + ctx + '/Home.jsp';    
+                    } else {
+                        var authFailed = YAHOO.util.Dom.get("authFailed");
+                        authFailed.innerHTML = 'Incorrect Username or Password!';
+                    }
+                }
+                
+                var failureHandler = function(o) {
+                    alert(o.status + '  ' + o.statusText);
+                }
+                
+                var callback = {
+                  success: successHandler, failure: failureHandler  
+                };
+                
+                var transaction = YAHOO.util.Connect.asyncRequest("POST", "loginchk", callback, "UserName="+userName+"&Pswd="+password);
+            }
+            
+            YAHOO.yui.bugtracker.submitClicked = function() {
+                userName = YAHOO.util.Dom.get("UserName").value;
+                password = YAHOO.util.Dom.get("Pswd").value;
+                YAHOO.yui.bugtracker.initConnection();
+            }
+            YAHOO.util.Event.addListener("submit", "click", YAHOO.yui.bugtracker.submitClicked);
+        </script>
+    </body>
+</html>

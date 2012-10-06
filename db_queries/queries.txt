@@ -1,0 +1,13 @@
+user1 = {'username':'test', password:'test'};
+user2 = {username:'karthic', password:'test'}
+db.userinfo.insert(user1)
+db.userinfo.add(user2)
+
+url1 = {title:'Express - api reference', url:'http://expressjs.com/api.html', description: 'Detailed explanation of express apis api', tags:{}, public: false, owner: 'test'}
+url2 = {title:'Express - guide', url:'http://expressjs.com/guide.html', description: 'A guide to express apis', tags:{}, public: false, owner: 'test'}
+
+db.urls.insert(url1);
+db.urls.insert(url2);
+
+
+

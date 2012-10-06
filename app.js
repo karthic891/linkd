@@ -34,7 +34,10 @@ app.get('/', mypage.index);
 app.post('/', mypage.handlePost);
 app.get('/users', user.list);
 app.get('/comment', mypage.comment);
+app.get('/urls', mypage.getURLs);
 app.get('/logout', mypage.logout);
+app.post('/logout', mypage.logout);
+app.get('/testpage', mypage.testpage);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
