@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title><%= title %></title>
-</head>
-<body>
-<form method='get' action='/comment'>
-<h1><%= welcomemsg %></h1>
-<br />
-<div id='comment'>
-<input type='text' name='commentTitle' />
-<br />
-<input type='text' name='commentBody' />
-<br />
-<input type='submit' />
-</div>
-<br />
-<div id='displayComments'>
-<%
-for(var i=0; i<comments.length; i++) {
-%>
-<h3><%=comments[i].title%><br />
-<%=comments[i].body%><br />
-</h3>
-<%
-}
-%>
-</div>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/3.5.1/build/button/button-min.js"></script>
+  </head>
+  <body>
+    <h1><%= welcomemsg %></h1>
+    <br />
+    <div id='addURLContainer'>
+      <input type='text' id='url' />
+      <br />
+      <button id='addURL'>Add URL</button>
+    </div>
+    <br />
+    <div id='displayComments'>
+      <%
+	 for(var i=0; i<comments.length; i++) {
+					 %>
+	 <h3><%=comments[i].title%><br />
+	   <%=comments[i].body%><br />
+	 </h3>
+	 <%
+	    }
+	    %>
+    </div>
 </form>
 <form method='post' action='/logout'>
-<input type='submit' name='logout' value='logout' />
+  <input type='submit' name='logout' value='logout' />
 </form>
+<!-- YUI script begins here -->
+<script>
+  YUI().use('button', 'event', 'io', 'json', 'cookie', function(Y) {
+    var addBtn = new Y.Button({
+      srcNode: '#addURL'
+    });
+    var addURLBtn = Y.one('#addURL');
+    var handleAddURL = function(e) {
+      var url = '/addURL',
+          urlDetail = Y.one('#url').get('value'),
+          userName = Y.Cookie.get("user");
+      Y.io(url, {
+        method: 'POST',
+        data : {
+          urlDetail: urlDetail,
+          userName: userName
+        },
+        on: {
+          success: function(id, o) {
+            alert('success' + o.status);
+          },
+          failure: function(id, o) {
+            alert('failure: ' + o.status);
+          }
+        }
+      });
+    }
+    addURLBtn.on('click', handleAddURL);
+  });
+</script>
 </body>
 </html>

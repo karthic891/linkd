@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+      <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
+      <script type="text/javascript" src="http://yui.yahooapis.com/3.5.1/build/button/button-min.js"></script>
+  </head>
+  <body class='yui3-skin-sam'>
+      <h3>Please Log In</h3>
+      <input type='hidden' name='action' value='login' />
+      UserName <input type='text' id='username' />
+      <br />
+      Password <input type='password' id='password' />
+      <br />
+      <div style='color:red' id='errormsg'></div>
+      <br />
+      <button id="loginBtn">Login</button>
+  
+    <!-- YUI script starts here -->
+    <script>
+    YUI().use('button', function(Y) {
+      var loginBtn = new Y.Button({
+        srcNode: '#loginBtn'
+      });
+    });
+
+    YUI().use('json', 'event', 'io', function(Y) {
+      var loginButton = Y.one('#loginBtn');
+      var handleLogin = function(e) {
+        var url = '/';
+        var userName = Y.one('#username').get('value');
+        var password = Y.one('#password').get('value');
+        Y.io(url, {
+          method: 'POST', 
+          data: {
+            username:userName, password: password, action: 'login'
+          },
+          on: {
+            success: function(id, o) { //Success handler
+              alert(o.responseText);
+              var jsonResp = Y.JSON.parse(o.responseText);
+              if(jsonResp.error) {
+                //Handled in failure block by returning status code 401:Unauthorized
+              } else {
+                alert('User is authenticated. Redirecting to Home');
+                window.location = 'http://localhost:3000/home.ejs';
+              }
+            },
+            failure: function(id,  o) { //Failure handler
+              if(o.status === 401) {
+                Y.one('#errormsg').setHTML('<p>Invalid Username/Password</p>');
+              } else {
+                Y.one('#errormsg').setHTML('<p>Unable to contact myapp</p>');
+              }
+            }
+          }
+        });
+      }
+      loginButton.on('click', handleLogin);
+    });
+    </script>
+  </body>
+</html>

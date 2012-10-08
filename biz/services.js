@@ -26,7 +26,7 @@ var authenticate = function(userName, password, redirectUser) {
 	  var cursor = collection.findOne({username:userName, password:password}, function(err, data) {
 	    console.log('data :: ' + data);
 	    if(data != null) {
-	      console.log('data is not null');
+	      console.log('data is not null : ');
 	      redirectUser(true, userName);	      
 	    } else {
 	      console.log('data is null');
@@ -87,7 +87,19 @@ var getURLs = function(userName, callback) {
   return 1;
 }
 
+var addURL = function(urlDetail, userName) {
+  var server = new MongoServer('localhost', 27017, {auto_reconnect:true});
+  var db = new Db('mydb', server);
+  db.open(function(err, db) {
+    if(! err) {
+      //db.collection('
+      console.log('db opened. No errors :) ');
+    }
+  });
+}
+
 exports.authenticate = authenticate;
 exports.addComment = addComment;
 exports.getComments = getComments;
 exports.getURLs = getURLs;
+exports.addURL = addURL;

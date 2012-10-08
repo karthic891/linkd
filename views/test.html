@@ -1,79 +1,79 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <style type="text/css">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <style type="text/css">
 
-body {
-	//margin:0;
-	//padding:0;
-}
+      body {
+      //margin:0;
+      //padding:0;
+      }
 
-.hello {
-  font-color: red;
-}
+      .hello {
+      font-color: red;
+      }
 
-</style>
+    </style>
 
-  <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
-  <script type="text/javascript" src="http://yui.yahooapis.com/3.5.1/build/button/button-min.js"></script>
-<!--
+    <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/3.5.1/build/button/button-min.js"></script>
+    <!--
 	<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/3.6.0/build/cssfonts/fonts-min.css" />
-<script type="text/javascript" src="http://yui.yahooapis.com/3.6.0/build/connection/connection.js"></script> 
-<script type="text/javascript" src="yui/build/element/element-min.js"></script> <!--
-<script type="text/javascript" src="http://yui.yahooapis.com/3.6.0/build/button/button.js"></script>
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.6.0/build/assets/skins/sam/button.css">
--->
-</head>
+	<script type="text/javascript" src="http://yui.yahooapis.com/3.6.0/build/connection/connection.js"></script> 
+	<script type="text/javascript" src="yui/build/element/element-min.js"></script> <!--
+											    <script type="text/javascript" src="http://yui.yahooapis.com/3.6.0/build/button/button.js"></script>
+											    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.6.0/build/assets/skins/sam/button.css">
+											    -->
+  </head>
 
-<body class="yui3-skin-sam">
-<div id="demo">
-    <div id="container">
+  <body class="yui3-skin-sam">
+    <div id="demo">
+      <div id="container">
         <p>Click for Hello World test.</p>
-    </div>
-    <p><a href="http://yuilibrary.com" id="firstA">The YUI Library. (Link navigates away from page.)</a></p>
+      </div>
+      <p><a href="http://yuilibrary.com" id="firstA">The YUI Library. (Link navigates away from page.)</a></p>
 
-    <a href="http://yuilibrary.com" id="secondA">The YUI Library. (Link's default behavior is suppressed.)</a>
-    <div class="message">
+      <a href="http://yuilibrary.com" id="secondA">The YUI Library. (Link's default behavior is suppressed.)</a>
+      <div class="message">
         When you clicked on the second link, *preventDefault* was called, so it did not navigate away from the page.
-    </div>
+      </div>
 
-<br />
-<button id="login">Submit-</button>
-<br />
-</div>	
-<button id="toggleLogin">Toggle Submit</button>
-<script>
-YUI().use('node', function (Y) {
-    // A function that gives hello world feedback:
-    var helloWorld = function(e) {
-    	alert('test');
-        e.target.setHTML("<p>Hello World!</p>");
-        //Y.one('#container').addClass('hello');
-    }
+      <br />
+      <button id="login">Submit-</button>
+      <br />
+    </div>	
+    <button id="toggleLogin">Toggle Submit</button>
+    <script>
+      YUI().use('node', function (Y) {
+      // A function that gives hello world feedback:
+      var helloWorld = function(e) {
+      alert('test');
+      e.target.setHTML("<p>Hello World!</p>");
+      //Y.one('#container').addClass('hello');
+      }
 
-    var container = Y.one("#container");
-    container.on("click", helloWorld);
+      var container = Y.one("#container");
+      container.on("click", helloWorld);
 
-});
+      });
 
-YUI().use('button', function(Y) {
-  var loginBtn = new Y.Button({
-    srcNode: '#login'
-  });
+      YUI().use('button', function(Y) {
+      var loginBtn = new Y.Button({
+      srcNode: '#login'
+      });
 
-  var toggleBtn = new Y.ToggleButton({
-    srcNode: '#toggleLogin'
-  });
-});
+      var toggleBtn = new Y.ToggleButton({
+      srcNode: '#toggleLogin'
+      });
+      });
 
-YUI().use('event', function(Y) {
-  var loginBtn = Y.one('#login');
-  loginBtn.on('click', function(e) {
-    alert('my button is clicked');
-  });
-});
-</script>
+      YUI().use('event', function(Y) {
+      var loginBtn = Y.one('#login');
+      loginBtn.on('click', function(e) {
+      alert('my button is clicked');
+      });
+      });
+    </script>
 
-</body>
+  </body>
 </html>

@@ -62,15 +62,15 @@ var handlePost = function(request, response) {
     if(status) {
       utils.logger.info('User authenticated : ' + userName + '. Setting cookie');
       console.log('User authenticated : ' + userName + '. Setting cookie');
-      response.cookie('user', userName, {maxAge: 86400, httpOnly: true});
+      response.cookie('user', userName, {maxAge: 86400, httpOnly: false});
       //var comments = services.getURLs(userName);
-      response.send({title: utils.APP_TITLE, welcomemsg: 'Welcome ' + userName, error: false});
-      //response.render('home', {title: utils.APP_TITLE, welcomemsg: 'Welcome ' + userName, 'comments':{}});
+      //response.send({title: utils.APP_TITLE, welcomemsg: 'Welcome ' + userName, error: false});
+      response.render('home', {title: utils.APP_TITLE, welcomemsg: 'Welcome ' + userName, 'comments':{}});
     } else {
       utils.logger.info('Authentication failed for user : ' +  userName);
       console.log('Authentication failed for user : ' +  userName);
-      response.send(401, {error: true});
-      //response.render('index', {title:utils.APP_TITLE, errormsg:'Invalid Username/Password'});
+      //response.send(401, {error: true});
+      response.render('index', {title:utils.APP_TITLE, errormsg:'Invalid Username/Password'});
     }
     response.end();
   }
@@ -108,6 +108,17 @@ var comment = function(request, response) {
     response.end();
 }
 
+var addURL = function(request, response) {
+  console.log('addURL method called.');
+  if(! utils.isEmpty(request.body)) {
+    var userName = request.body.userName;
+    var urlDetail = request.body.urlDetail;
+    services.addURL(urlDetail, userName);
+    response.send(200, 'Success');
+  }
+  response.end();
+}
+
 var testpage = function(request, response) {
   response.render('test', {title:'super'});
   response.end();
@@ -120,3 +131,4 @@ exports.comment = comment;
 exports.handlePost = handlePost;
 exports.getURLs = getURLs;
 exports.logout = logout;
+exports.addURL = addURL;

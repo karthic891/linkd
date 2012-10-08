@@ -9,5 +9,19 @@ url2 = {title:'Express - guide', url:'http://expressjs.com/guide.html', descript
 db.urls.insert(url1);
 db.urls.insert(url2);
 
+url3 = {url:'www.google.com',
+	saves: 0}
+url4 = {url:'www.gmail.com',
+	saves: 0}
 
+db.urls.insert(url3)
+db.urls.insert(url4)
 
+urlmeta1 = {title: 'Google Home page',
+	    desc: 'URL for google home page',
+	    owner: test,
+	    private: false,
+	    url_id: 1,
+	    tags: {}
+	   }
+db.urls_meta.insert(urlmeta1);
