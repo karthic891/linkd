@@ -9,7 +9,6 @@ var objectID = mongodb.objectID;
 //console.log(connection);
 //console.log(MongoServer);
 //console.log(BSON);
-//console.log(objectID);
 //console.log('Everything is set!');
 db1 = new Db('node-monogo-blog', new MongoServer('localhost', 27017, {}, {}));
 db1.open(function(){console.log('function for db open called');});
