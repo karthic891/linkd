@@ -32,6 +32,7 @@ app.get('/', router.index);
 app.post('/', router.handlePost);
 app.get('/comment', router.comment);
 app.get('/urls', router.getURLs);
+app.post('/urls', router.getURLs);
 app.get('/logout', router.logout);
 app.post('/logout', router.logout);
 app.get('/testpage', router.testpage);

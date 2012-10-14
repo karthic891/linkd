@@ -93,13 +93,15 @@ var handlePost = function(request, response) {
 }
 
 var getURLs = function(request, response) {
-  var userName = 'arun'; //request.query.username;
+  var userName = request.body.userName;
   console.log(userName);
-  services.getURLs(userName, function() {
-    console.log('callback handler called')
-    response.send(200);
+  services.getURLs(userName, function(err, data) {
+    if(err) {
+      response.send(600, {error: err});
+    }
+    console.log('Response from back end : ' + data)
+    response.send(200, {data: data});
   });
-  //response.end();
 }
 
 var comment = function(request, response) {
@@ -128,7 +130,8 @@ var addURL = function(request, response) {
   if(! utils.isEmpty(request.body)) {
     var userName = request.body.userName;
     var urlDetail = request.body.urlDetail;
-    services.addURL(urlDetail, userName, callbackHandler);
+    var urlDetailObj = JSON.parse(urlDetail);
+    services.addURL(urlDetailObj, userName, callbackHandler);
   }
   //response.end();
 }

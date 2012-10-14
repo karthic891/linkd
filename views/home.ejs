@@ -10,26 +10,21 @@
     <h1><%= welcomemsg %></h1>
     <br />
     <div id='addURLContainer'>
-      <input type='text' id='url' />
+      Title: <input type='text' id='urlTitle' />
+      <br />
+      Desc: <input type='text' id='urlDesc' />
+      <br />
+      Tags: <input type='text' id='urlTags' />
+      <br />
+      Url: <input type='text' id='url' />
       <br />
       <button id='addURL'>Add URL</button>
     </div>
     <br />
-    <div id='displayComments'>
-      <%
-	 for(var i=0; i<comments.length; i++) {
-					 %>
-	 <h3><%=comments[i].title%><br />
-	   <%=comments[i].body%><br />
-	 </h3>
-	 <%
-	    }
-	    %>
-    </div>
-</form>
-<form method='post' action='/logout'>
-  <input type='submit' name='logout' value='logout' />
-</form>
+    <button id="getURLs">Get URLs</button>
+    <form method='post' action='/logout'>
+      <input type='submit' name='logout' value='logout' />
+    </form>
 <!-- YUI script begins here -->
 <script>
   YUI().use('button', 'event', 'io', 'json', 'cookie', function(Y) {
@@ -37,14 +32,24 @@
       srcNode: '#addURL'
     });
     var addURLBtn = Y.one('#addURL');
+    var getBtn = new Y.Button({
+      srcNode: '#getURLs'
+    });
+    var getURLsBtn = Y.one('#getURLs');
+
+    <!-- Handler for adding a new url -->
     var handleAddURL = function(e) {
       var url = '/addURL',
-          urlDetail = Y.one('#url').get('value'),
+          urlTitle = Y.one('#urlTitle').get('value');
+  alert('testset'),
+          urlDesc = Y.one('#urlDesc').get('value'),
+          urlTags = Y.one('#urlTags').get('value'),
+          urlValue = Y.one('#url').get('value'),
           userName = Y.Cookie.get("user");
       Y.io(url, {
         method: 'POST',
         data : {
-          urlDetail: urlDetail,
+          urlDetail: Y.JSON.stringify({title: urlTitle, desc: urlDesc, tags: urlTags, url: urlValue}),
           userName: userName
         },
         on: {
@@ -57,7 +62,28 @@
         }
       });
     }
+
+    <!-- Handler for retrieving urls -->
+    var handleGetURLs = function(e) {
+      var url = '/urls',
+        userName = Y.Cookie.get("user");
+      Y.io(url, {
+        method: 'POST',
+        data : {
+          userName: userName
+        },
+        on: {
+          success: function(id, o) {
+            alert('success' + o.status + o.responseText);
+          },
+          failure: function(id, o) {
+            alert('failure: ' + o.status);
+          }
+        }
+      });
+    }
     addURLBtn.on('click', handleAddURL);
+    getURLsBtn.on('click', handleGetURLs);
   });
 </script>
 </body>

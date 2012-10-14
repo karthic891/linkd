@@ -1,0 +1,17 @@
+var async = require('async');
+
+console.log(async);
+var arr = [];
+for(var i=0; i<10; i++) {
+  arr.push({val: i});
+}
+
+var callback = function(err) {
+  console.log(err);
+}
+
+var func = function(item, callback) {
+  console.log(item.val);
+}
+
+async.forEach(arr, func, callback);
