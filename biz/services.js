@@ -79,13 +79,14 @@ var getURLs = function(userName, callback) {
     }
   }
 
-  //Iterator function. Iterates for every item in the array passed to asyn function.
+  //Iterator function. Iterates for every item in the array passed to async function.
   var itemIterator = function(item, done) {
     db.collection('url', function(urlCollectionErr, urlCollection) {
       if(! urlCollectionErr) {
 	urlCollection.findOne({_id: item.url_id}, function(err, data) {
 	  item.url = data.url;
 	  item.saves = data.saves;
+	  delete item.url_id;
 	  urlValues.push(item);
 	  done(false);
 	  return;

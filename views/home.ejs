@@ -5,6 +5,14 @@
     <title><%= title %></title>
     <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
     <script type="text/javascript" src="http://yui.yahooapis.com/3.5.1/build/button/button-min.js"></script>
+    <style>
+      .txtTransparentBG {
+        color: #C0C0C0;
+      }
+      .txtField {
+        color: #000000;
+      }
+    </style>
   </head>
   <body>
     <h1><%= welcomemsg %></h1>
@@ -33,17 +41,33 @@
     /* Adding tags */
     var tags = new Array();
     var tagTxtField = Y.one('#urlTag');
+    tagTxtField.addClass('txtTransparentBG');
+    tagTxtField.set('value', 'Press enter to add tag');
 
     <!-- Handler function for add tags -->
     var addTagHandler = function(e) {
       if(e.keyCode == 13) { // handle enter press
         var tag = tagTxtField.get('value');
         tags.push(tag);
+        Y.one('#tags').append('.'+ tags[tags.length - 1]);
         tagTxtField.set('value', '');
-        Y.one('#tags').append('.'+ tags[tags.length - 1]); 
       }
     }
+
+    <!-- Handler function for onfocus handler on tag text field -->
+    var addTagOnFocusHandler = function(event) {
+      tagTxtField.set('value', '');
+      tagTxtField.replaceClass('txtTransparentBG', 'txtField');
+    }
+
+    <!-- Handler function for onblur handler on tag text field -->    
+    var addTagOnBlurHandler = function(event) {
+      tagTxtField.replaceClass('txtField', 'txtTransparentBG'); 
+      tagTxtField.set('value', 'Press enter to add tag');
+    }
     tagTxtField.on('keyup', addTagHandler);
+    tagTxtField.on('focus', addTagOnFocusHandler);
+    tagTxtField.on('blur', addTagOnBlurHandler);    
 
     /* Add URL handler */
     var addBtn = new Y.Button({
