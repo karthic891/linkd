@@ -325,3 +325,69 @@
 {"level":"info","message":"User authenticated : arun. Setting cookie","timestamp":"2012-10-14T21:11:02.307Z"}
 {"level":"info","message":"User authenticated : arun. Setting cookie","timestamp":"2012-10-14T21:11:26.014Z"}
 {"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-14T21:11:33.344Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T06:52:02.390Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T06:54:09.096Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:28:22.783Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:29:53.571Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:30:03.523Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:30:05.264Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:32:36.089Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:32:39.329Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:32:58.407Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:33:28.708Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:33:55.469Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:34:35.569Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:35:24.448Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T07:36:55.933Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:28:46.280Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:29:29.664Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:29:57.690Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:30:23.900Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:31:08.777Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:31:44.606Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:33:41.805Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:34:07.282Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:34:31.475Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:35:07.194Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:35:18.449Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:35:46.718Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:35:49.595Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:36:01.539Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:36:16.936Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:36:39.130Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:37:05.842Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:37:45.740Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:38:02.509Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:38:19.469Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:38:48.145Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:39:03.393Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:49:07.007Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:49:38.686Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:49:41.993Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:49:55.665Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:50:31.147Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:50:46.703Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:51:22.088Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:51:43.011Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:52:23.911Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:52:42.812Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:53:06.023Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:53:19.604Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:55:01.864Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:55:44.649Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:55:59.103Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T08:56:12.833Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T08:56:49.905Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T08:57:27.024Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T08:57:58.530Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T08:59:32.387Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:00:03.007Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:00:21.570Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:00:50.870Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:01:29.775Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:02:37.287Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:04:35.807Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:16:03.198Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:19:45.884Z"}
+{"level":"info","message":"User authenticated : test. Setting cookie","timestamp":"2012-10-15T09:21:36.089Z"}
+{"level":"info","message":"User present : test","timestamp":"2012-10-15T09:27:50.123Z"}

@@ -126,16 +126,18 @@ var getURLs = function(userName, callback) {
 	    url_id: 1,
 	    ispublic: 1,
 	    owner: 1,
+	    tags: 1, 
 	    _id: 0
 	  }
 	  urlMetaCollection.find({owner: userName}, options).toArray(function(err, data) {
 	    for(var i=0; i<data.length; i++) {
 	      var urlId = data[i].url_id;
 	      urlResult.push({title: data[i].title,
-			     desc: data[i].desc,
-			     ispublic: data[i].ispublic,
-			     owner: data[i].owner,
-			     url_id: data[i].url_id});
+			      desc: data[i].desc,
+			      ispublic: data[i].ispublic,
+			      owner: data[i].owner,
+			      tags: data[i].tags,
+			      url_id: data[i].url_id});
 	    }
 	    console.log(urlResult);
 	    getURLById(urlResult, callback);

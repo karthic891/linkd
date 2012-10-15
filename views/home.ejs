@@ -14,7 +14,8 @@
       <br />
       Desc: <input type='text' id='urlDesc' />
       <br />
-      Tags: <input type='text' id='urlTags' />
+      Tags: <input type='text' id='urlTag' />
+      <div id='tags'></div>
       <br />
       Url: <input type='text' id='url' />
       <br />
@@ -28,22 +29,34 @@
 <!-- YUI script begins here -->
 <script>
   YUI().use('button', 'event', 'io', 'json', 'cookie', function(Y) {
+
+    /* Adding tags */
+    var tags = new Array();
+    var tagTxtField = Y.one('#urlTag');
+
+    <!-- Handler function for add tags -->
+    var addTagHandler = function(e) {
+      if(e.keyCode == 13) { // handle enter press
+        var tag = tagTxtField.get('value');
+        tags.push(tag);
+        tagTxtField.set('value', '');
+        Y.one('#tags').append('.'+ tags[tags.length - 1]); 
+      }
+    }
+    tagTxtField.on('keyup', addTagHandler);
+
+    /* Add URL handler */
     var addBtn = new Y.Button({
       srcNode: '#addURL'
     });
     var addURLBtn = Y.one('#addURL');
-    var getBtn = new Y.Button({
-      srcNode: '#getURLs'
-    });
-    var getURLsBtn = Y.one('#getURLs');
-
-    <!-- Handler for adding a new url -->
+  
+    <!-- Handler function for adding a new url -->
     var handleAddURL = function(e) {
       var url = '/addURL',
           urlTitle = Y.one('#urlTitle').get('value');
-  alert('testset'),
           urlDesc = Y.one('#urlDesc').get('value'),
-          urlTags = Y.one('#urlTags').get('value'),
+          urlTags = tags,
           urlValue = Y.one('#url').get('value'),
           userName = Y.Cookie.get("user");
       Y.io(url, {
@@ -62,8 +75,15 @@
         }
       });
     }
+    addURLBtn.on('click', handleAddURL);
 
-    <!-- Handler for retrieving urls -->
+    /* Get URL handler */
+    var getBtn = new Y.Button({
+      srcNode: '#getURLs'
+    });
+    var getURLsBtn = Y.one('#getURLs');
+
+    <!-- Handler function for retrieving urls -->
     var handleGetURLs = function(e) {
       var url = '/urls',
         userName = Y.Cookie.get("user");
@@ -82,7 +102,6 @@
         }
       });
     }
-    addURLBtn.on('click', handleAddURL);
     getURLsBtn.on('click', handleGetURLs);
   });
 </script>
