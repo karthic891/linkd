@@ -165,24 +165,62 @@ var addURL = function(urlDetail, userName, callbackHandler) {
  
   var server = new MongoServer('localhost', 27017, {auto_reconnect:true});
   var db = new Db('mydb', server);
+
+  var checkIfURLAlreadySaved = function(url_id, userName, callback) {
+    console.log('check url already saved method called : ' + userName);
+    // db.open(function(dbOpenErr, db) {
+    //   console.log(dbOpenErr);
+    // });
+    db.collection('url_metadata', {safe: true}, function(collectionErr, collection) {
+      if(! collectionErr) {
+    	collection.findOne({url_id: url_id, owner: userName}, function(findOneErr, data) {
+    	  if(! findOneErr) {
+	    if(data != null) {
+    	      console.log('lateste code : ' + data);
+    	      callback(true);	      
+	    } else { // user has not already saved this url
+	      callback(false);
+	    }
+
+    	  } else {
+    	    console.log('Fine One error : ' + findOneErr);
+    	    callbackHandler(false);
+    	  }
+    	});
+      } else {
+    	console.log('Collection Err : ' + collectionErr);
+    	callbackHandler(false);
+      }
+    });
+  }
+  
   
   db.open(function(dbOpenErr, db) {
     if(! dbOpenErr) {
       console.log('db opened. No errors :) ');
       db.collection('url', {safe: true}, function(collectionErr, collection) {
-	//db.close();
+	db.close();
 	if(! collectionErr) {
 	  var cursor = collection.findOne({url: urlDetail.url}, function(cursorErr, data) {
 	    if(! cursorErr) {
 	      if(data !== null) {
 		console.log('Data :: ' + data);
-		collection.update({url: urlDetail.url}, {'$inc' : {saves: 1}}, function(collectionErr) {
-		  if(! collectionErr) {
-		    console.log('Updated');
+		var url_id = data._id;
+		checkIfURLAlreadySaved(url_id, userName, function(alreadySaved) {
+		  console.log('user saved status : ' + alreadySaved);
+		  if(alreadySaved) {
+		    console.log('user already has saved this url.')
 		    callbackHandler(true);
 		  } else {
-		    console.log('Error in update : ' + err);
-		    callbackHandler(false);
+		    collection.update({url: urlDetail.url}, {'$inc' : {saves: 1}}, function(collectionErr) {
+		      if(! collectionErr) {
+			console.log('Updated');
+			callbackHandler(true);
+		      } else {
+			console.log('Error in update : ' + err);
+			callbackHandler(false);
+		      }
+		    });
 		  }
 		});
 	      } else {  //for data !== null
