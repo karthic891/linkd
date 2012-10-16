@@ -1,16 +1,18 @@
+"use strict";
+
 /* Constants */
 const APP_TITLE = 'My Application';
 
 /* Logging */
 var winston = require('winston');
 var logger = new (winston.Logger)({
-  transports : [
-    new (winston.transports.Console)(),
-    new (winston.transports.File)({filename: './logs/logs.log', handleExceptions: false})
-  ],
-  exceptionHandlers: [
-    new (winston.transports.File)({filename: './logs/exceptions.log', handleExceptions: true})
-  ]
+    transports : [
+	new (winston.transports.Console)(),
+	new (winston.transports.File)({filename: './logs/logs.log', handleExceptions: false})
+    ],
+    exceptionHandlers: [
+	new (winston.transports.File)({filename: './logs/exceptions.log', handleExceptions: true})
+    ]
 });
 
 /* Utility Functions */
