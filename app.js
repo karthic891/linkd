@@ -38,6 +38,7 @@ app.get('/logout', router.logout);
 app.post('/logout', router.logout);
 app.get('/testpage', router.testpage);
 app.post('/addURL', router.addURL);
+app.get('/boot', router.boot);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));

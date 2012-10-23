@@ -167,30 +167,84 @@ var addURL = function (urlDetail, userName, callbackHandler) {
     var server = new MongoServer('localhost', 27017, {auto_reconnect:true});
     var db = new Db('mydb', server);
 
+    /**
+     * Saves the url in the URL table calls 'callback' to save the url's metadata
+     * @param urlDetail, userName, callback --> saveURLMetadata()
+     * @return 
+     * @author karthic891
+     */
+    var saveURL = function(urlDetail, userName, callback) {
+	console.log('save URL called locally');
+	db.collection('url', function(dbErr, collection) {
+	    collection.insert({url: urlDetail.url, saves: 1}, function (insertErr, data) { 
+		if(! insertErr) {
+		    var urlId = data[0]._id;
+		    console.log('Inserted into url : ' + data[0]._id);
+		    urlDetail.url_id = urlId;
+		    callback(urlDetail, userName, callbackHandler);
+		} else {
+		    console.log('Error in insertion : ' + insertErr) ;
+		    callbackHandler(false);
+		}
+	    });
+	});
+    }
+
+    /**
+     * Saves the metadata of the URL i.e., title, desc, tags, etc
+     * @param urlDetail, userName, callback --> calls back the router
+     * @return 
+     * @author karthic891
+     */
+    var saveURLMetadata = function(urlDetail, userName, callback) {
+	console.log('save URL metadata called locally');
+	db.collection('url_metadata', {safe: true}, function (collectionErr, url_metadataCollection) {
+	    //db.close();
+	    if(! collectionErr) {
+		var data = {title: urlDetail.title, desc: urlDetail.desc, ispublic: true, url_id: urlDetail.url_id, owner: userName, tags: urlDetail.tags};
+		console.log(data);
+		url_metadataCollection.insert(data, function (insertErr, data) {
+		    if(! insertErr) {
+			console.log('inserted into url_metadata collection ' + data[0]._id);
+			callback(true);
+		    } else {
+			console.log('insert into url_metadata collection failed!');
+			callbackHandler(false, 'Insert failed');
+		    }
+		});
+	    } else {
+		console.log('url_metadataCollection error : ' + collectionErr);
+		callbackHandler(false, 'Insert failed');
+	    }
+	});
+    }
+
+    /**
+     * Check if the URL is already present in the DB for the user identified by userName. This prevents duplication of the URL for the same user
+     * @param url_id, userName, callback --> calls an inline method with the status of the check 
+     * @return status
+     * @author karthic891
+     */
     var checkIfURLAlreadySaved = function (url_id, userName, callback) {
 	console.log('check url already saved method called : ' + userName);
-	// db.open(function (dbOpenErr, db) {
-	//   console.log(dbOpenErr);
-	// });
 	db.collection('url_metadata', {safe: true}, function (collectionErr, collection) {
 	    if(! collectionErr) {
     		collection.findOne({url_id: url_id, owner: userName}, function (findOneErr, data) {
     		    if(! findOneErr) {
 			if(data != null) {
-    			    console.log('lateste code : ' + data);
     			    callback(true);	      
 			} else { // user has not already saved this url
-			    callback(false);
+			    callback(false, 'User has already saved this link');
 			}
 
     		    } else {
     			console.log('Fine One error : ' + findOneErr);
-    			callbackHandler(false);
+    			callbackHandler(false, 'Insert failed');
     		    }
     		});
 	    } else {
     		console.log('Collection Err : ' + collectionErr);
-    		callbackHandler(false);
+    		callbackHandler(false,'Insert failed');
 	    }
 	});
     }
@@ -205,7 +259,6 @@ var addURL = function (urlDetail, userName, callbackHandler) {
 		    var cursor = collection.findOne({url: urlDetail.url}, function (cursorErr, data) {
 			if(! cursorErr) {
 			    if(data !== null) {
-				console.log('Data :: ' + data);
 				var url_id = data._id;
 				checkIfURLAlreadySaved(url_id, userName, function (alreadySaved) {
 				    console.log('user saved status : ' + alreadySaved);
@@ -213,45 +266,21 @@ var addURL = function (urlDetail, userName, callbackHandler) {
 					console.log('user already has saved this url.')
 					callbackHandler(true);
 				    } else {
-					collection.update({url: urlDetail.url}, {'$inc' : {saves: 1}}, function (collectionErr) {
+					urlDetail.url_id = url_id;
+					collection.update({_id: urlDetail.url_id}, {'$inc' : {saves: 1}}, function (collectionErr) {
 					    if(! collectionErr) {
 						console.log('Updated');
-						callbackHandler(true);
+						saveURLMetadata(urlDetail, userName, callbackHandler);
 					    } else {
 						console.log('Error in update : ' + err);
-						callbackHandler(false);
+						callbackHandler(false, 'Insert failed');
 					    }
 					});
 				    }
 				});
 			    } else {  //for data !== null
 				console.log('Data was null');
-				collection.insert({url: urlDetail.url, saves: 1}, function (insertErr, data) { 
-				    if(! insertErr) {
-					var urlId = data[0]._id;
-					console.log('Inserted into url : ' + data[0]._id);
-					db.collection('url_metadata', {safe: false}, function (collectionErr, url_metadataCollection) {
-					    //db.close();
-					    if(! collectionErr) {
-						var data = {title: urlDetail.title, desc: urlDetail.desc, ispublic: true, url_id: urlId, owner: userName, tags: urlDetail.tags};
-						console.log(data);
-						url_metadataCollection.insert(data, function (insertErr, data) {
-						    if(! insertErr) {
-							console.log('inserted into url_metadata collection ' + data[0]._id);			
-						    } else {
-							console.log('insert into url_metadata collection failed!');
-						    }
-						});
-					    } else {
-						console.log('url_metadataCollection error : ' + collectionErr);
-					    }
-					});
-					callbackHandler(true);
-				    } else {
-					console.log('Error in insertion : ' + insertErr) ;
-					callbackHandler(false);
-				    }
-				});
+				saveURL(urlDetail, userName, saveURLMetadata);
 			    }
 			} else {
 			    console.log('FindOne Error : ' + cursorErr);
@@ -266,6 +295,28 @@ var addURL = function (urlDetail, userName, callbackHandler) {
 	} else {
 	    console.log('DB error : ' + dbOpenErr);
 	    callbackHandler(false);
+	}
+    });
+}
+
+var registerUser = function(userDetail, callbackHandler) {
+    console.log('Register user called : ' + userDetail)
+    db.open(function(dbOpenErr, db) {
+	if(! dbOpenErr) {
+	    db.collection('userinfo', {safe: true}, function(collectionErr, collection) {
+		if(! collectionErr) {
+		    var data = {name: userDetail.name, username: userDetail.userName, password: userDetail.password};
+		    collection.insert(data, function(errc) {
+			
+		    })
+		} else {
+		    console.log('Collection Err : ' + collectionErr);
+		    callbackHandler(false, 'Register error.');
+		}
+	    });
+	} else {
+	    console.log('dbOpen Error : ' + dbOpenErr);
+	    callbackHandler(false, 'Register error.');
 	}
     });
 }

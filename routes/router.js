@@ -118,12 +118,12 @@ var comment = function(request, response) {
 
 var addURL = function(request, response) {
     console.log('addURL method called.');
-    var callbackHandler = function(status) {
+    var callbackHandler = function(status, error) {
 	console.log('callback handler called : ' + status);
 	if(status) {
 	    response.send(200, 'Success');      
 	} else {
-	    response.send(600, {error: 'Some DB problem'});
+	    response.send(600, {error: error});
 	}
 
     }
@@ -142,6 +142,11 @@ var testpage = function(request, response) {
     response.end();
 }
 
+var boot = function(request, response) {
+    response.render('boot', {});
+    response.end();
+}
+
 //exports.login = login;
 exports.index = index;
 exports.testpage = testpage;
@@ -150,3 +155,4 @@ exports.handlePost = handlePost;
 exports.getURLs = getURLs;
 exports.logout = logout;
 exports.addURL = addURL;
+exports.boot = boot;

@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 
 /* Constants */
 const APP_TITLE = 'My Application';
