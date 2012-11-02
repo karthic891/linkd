@@ -31,24 +31,24 @@ var authenticate = function (userName, password, redirectUser) {
 	    console.log('db open successful');
 	    db.collection('userinfo', {safe: true}, function (err, collection) {
 		if(! err) {
-		    var cursor = collection.findOne({username:userName, password:password}, function (err, data) {
+		    var cursor = collection.findOne({email: userName, password:password}, function (err, data) {
 			console.log('data :: ' + data);
 			if(data != null) {
 			    console.log('data is not null : ');
-			    redirectUser(true, userName);	      
+			    redirectUser(true, {username: userName, name: data.name});	      
 			} else {
 			    console.log('data is null');
-			    redirectUser(false, userName);
+			    redirectUser(false, {username: userName, error: 'Cannot authenticate user'});
 			}
 		    });
 		} else {
 		    console.log('Error in collection : ' + err);
-		    redirectUser(false, userName);
+		    redirectUser(false, {username: userName, error: 'Cannot authenticate user'});
 		}
 	    });
 	} else {  //If DB open error
 	    console.log('Error in db opening : ' + err);
-	    redirectUser(false, userName);
+	    redirectUser(false, {username: userName, error: 'Cannot authenticate user'});
 	}
     });
 }
@@ -301,22 +301,30 @@ var addURL = function (urlDetail, userName, callbackHandler) {
 
 var registerUser = function(userDetail, callbackHandler) {
     console.log('Register user called : ' + userDetail)
+    var server = new MongoServer('localhost', 27017, {auto_reconnect:true});
+    var db = new Db('mydb', server);
     db.open(function(dbOpenErr, db) {
 	if(! dbOpenErr) {
 	    db.collection('userinfo', {safe: true}, function(collectionErr, collection) {
 		if(! collectionErr) {
-		    var data = {name: userDetail.name, username: userDetail.userName, password: userDetail.password};
-		    collection.insert(data, function(errc) {
-			
-		    })
+		    var data = {name: userDetail.name, email: userDetail.email, password: userDetail.password};
+		    collection.insert(data, function(insertErr, data) {
+			if(! insertErr) {
+			    console.log(data);
+			    callbackHandler(true, {name: userDetail.name, username: userDetail.email});
+			} else {
+			    console.log('Insertion error : ' + insertErr);
+			    callbackHandler(false, {error: 'Register failed.'});
+			}
+		    });
 		} else {
 		    console.log('Collection Err : ' + collectionErr);
-		    callbackHandler(false, 'Register error.');
+		    callbackHandler(false, {error: 'Register error.'});
 		}
 	    });
 	} else {
 	    console.log('dbOpen Error : ' + dbOpenErr);
-	    callbackHandler(false, 'Register error.');
+	    callbackHandler(false, {error: 'Register error.'});
 	}
     });
 }
@@ -326,3 +334,4 @@ exports.authenticate = authenticate;
 exports.addComment = addComment;
 exports.getURLs = getURLs;
 exports.addURL = addURL;
+exports.registerUser = registerUser;

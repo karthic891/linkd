@@ -16,7 +16,7 @@
        });
     </script>
   </head>
-  <body>
+  <body class="wrapper">
     <!-- Header -->
     <div class="navbar">
       <div class="navbar-inner headerArea">
@@ -30,15 +30,7 @@
 	      </div>
 	    </div>
 	    <div class="pull-right" style="margin-top: 0.3%;">
-		<a href="#" class="links add-link" id="tooltip" data-original-title="Add Link" data-placement="bottom"><img src="/images/5.png" /><strong>Link It!</strong></a>
-	      <div class="btn-group" style="font-size: 16px;">
-		<a href="#" class="btn dropdown-toggle" data-toggle="dropdown" style="color: black"><i class="icon-user"></i> karthic891 <span class="caret"></span></a>
-		<ul class="dropdown-menu">
-		  <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-		  <li class="divider"></li>
-		  <li><a href="#"><i class="icon-off"></i> Logout</a></li>
-		</ul>
-	      </div>
+		<a href="#" class="links add-link" id="tooltip" data-original-title="About Linkd" data-placement="bottom">About</a>
 	    </div>
 	  </form>
 	  </div>
@@ -49,40 +41,76 @@
     <div class="container">
       <div class="homepage-img">
 	<div style="float: right; padding-right: 10%; padding-top: 10%;">
-	  <a type="button" class="btn btn-large"><i class="icon-glass"></i> Sign Up</a>
+	  <a type="button" class="btn btn-large"><i class="icon-glass"></i> Join Now!</a>
 	</div>
       </div>
       <form class="form-horizontal" method='POST' action='/'>
-	<legend>Login</legend>
-	<div class="control-group">
-	  <label class="control-label" for="username">Username</label>
-	  <div class="controls">
-	    <input type="text" id="username" name="username" placeholder="Username">
+	<div class="content-left">
+	  <legend>Login</legend>
+	  <div class="control-group">
+	    <label class="control-label" for="email">Email</label>
+	    <div class="controls">
+	      <input type="text" id="email" name="email" placeholder="Email">
+	    </div>
 	  </div>
-	</div>
 
-	<div class="control-group">
-	  <label class="control-label" for="password">Password</label>
-	  <div class="controls">
-	    <input type="text" id="password" name="password" placeholder="Password">
+	  <div class="control-group">
+	    <label class="control-label" for="password">Password</label>
+	    <div class="controls">
+	      <input type="password" id="password" name="password" placeholder="Password">
+	    </div>
 	  </div>
+	  <div style='color:red; text-align: center;' id='errormsg'><%= errormsg %></div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <button name="action" value="login" type="submit" class="btn"><i class="icon-ok-sign"></i> Login</button>
+	    </div>
+	  </div>
+	  
 	</div>
-	<div class="control-group">
-	  <div class="controls">
-	    <button name="action" value="login" type="submit" class="btn"><i class="icon-ok-sign"></i> Login</button>
+	
+	<div class="content-right">
+	  <legend style="left: 20px;">&nbsp;&nbsp;&nbsp;&nbsp; Register</legend>
+	  <div class="control-group">
+	    <label class="control-label" for="regName">Name</label>
+	    <div class="controls">
+	      <input type="text" id="regName" name="regName" placeholder="Name">
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <label class="control-label" for="regEmail">Email</label>
+	    <div class="controls">
+	      <input type="text" id="regEmail" name="regEmail" placeholder="Email">
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <label class="control-label" for="regPassword">Password</label>
+	    <div class="controls">
+	      <input type="password" id="regPassword" name="regPassword" placeholder="Password">
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <div class="controls">
+	      <button name="action" value="register" type="submit" class="btn"><i class="icon-user"></i> Register</button>
+	    </div>
 	  </div>
 	</div>
       </form>
-      <div class="btn-group">
-	<a class="btn" href="#"><i class="icon-search"></i> Search</a>
-	<a class="btn" href="#"><i class="icon-user"></i> Login</a>
-      </div>
-      <div class="alert alert-error">
-	<button type="button" class="close" data-dismiss="alert">x</button>
-	<strong>Oh Shut up!</strong> I know what I'm doing.
-      </div>
+
+      <!-- <br /> -->
+      <!-- <br /> -->
+      <!-- <div class="btn-group"> -->
+      <!-- 	<a class="btn" href="#"><i class="icon-search"></i> Search</a> -->
+      <!-- 	<a class="btn" href="#"><i class="icon-user"></i> Login</a> -->
+      <!-- </div> -->
+      <!-- <div class="alert alert-error"> -->
+      <!-- 	<button type="button" class="close" data-dismiss="alert">x</button> -->
+      <!-- 	<strong>Oh Shut up!</strong> I know what I'm doing. -->
+      <!-- </div> -->
       
-      <br><br><br><br>
     </div>
     
     <!-- Footer -->
@@ -96,5 +124,5 @@
 	</center>
       </div>
     </footer>
-  </body>
+  </body class="wrapper">
 </html>

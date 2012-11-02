@@ -42,7 +42,7 @@ var index = function(request, response){
     } else {
 	console.log('User not present in cookie');
 	utils.logger.info('User not present in cookie');
-	response.render('index', {title:utils.APP_TITLE, errormsg:''});
+	response.render('boot', {title:utils.APP_TITLE, errormsg:''});
     }
     response.end();
 };
@@ -53,26 +53,26 @@ var logout = function(request, response) {
 	console.log('Logged out by using GET method');  
     }
     response.clearCookie('user');
-    response.render('index', {title:utils.APP_TITLE, errormsg:''});
+    response.render('boot', {title:utils.APP_TITLE, errormsg:''});
     response.end();
 }
 
 var handlePost = function(request, response) {
     console.log('Handling post requests');
-    /* Redirect the user based on authentication status */
-    var redirectUser = function(status, userName) {
+    /* Redirect the user based on authentication/registration status */
+    var redirectUser = function(status, result) {
 	if(status) {
-	    utils.logger.info('User authenticated : ' + userName + '. Setting cookie');
-	    console.log('User authenticated : ' + userName + '. Setting cookie');
-	    response.cookie('user', userName, {maxAge: 86400, httpOnly: false});
+	    utils.logger.info('User authenticated : ' + result.username + '. Setting cookie');
+	    console.log('User authenticated : ' + result.username + '. Setting cookie');
+	    response.cookie('user', result.username, {maxAge: 86400, httpOnly: false});
 	    //var comments = services.getURLs(userName);
 	    //response.send({title: utils.APP_TITLE, welcomemsg: 'Welcome ' + userName, error: false});
-	    response.render('home', {title: utils.APP_TITLE, welcomemsg: 'Welcome ' + userName, 'comments':{}});
+	    response.render('home', {title: utils.APP_TITLE, welcomemsg: 'Welcome ' + result.name, 'comments':{}});
 	} else {
-	    utils.logger.info('Authentication failed for user : ' +  userName);
-	    console.log('Authentication failed for user : ' +  userName);
+	    utils.logger.info('Authentication failed for user : ' +  result.username);
+	    console.log('Authentication failed for user : ' +  result.username);
 	    //response.send(401, {error: true});
-	    response.render('index', {title:utils.APP_TITLE, errormsg:'Invalid Username/Password'});
+	    response.render('boot', {title:utils.APP_TITLE, errormsg:'Invalid Username/Password'});
 	}
 	response.end();
     }
@@ -81,11 +81,17 @@ var handlePost = function(request, response) {
     console.log(action);
     if(action != null) {
 	if(! utils.isEmpty(action)) {
-	    if(action == 'login') {
-		var userName = request.body.username;
+	    if(action === 'login') {
+		var userName = request.body.email;
 		var password = request.body.password;
 		console.log(userName + password);
 		var status = services.authenticate(userName, password, redirectUser);
+	    } else if(action === 'register') {
+		var name = request.body.regName;
+		var email = request.body.regEmail;
+		var password = request.body.regPassword;
+		var userDetail = {name: name, email: email, password: password};
+		services.registerUser(userDetail, redirectUser);
 	    } else {
 		console.log('Action not defined properly.');
 	    }
